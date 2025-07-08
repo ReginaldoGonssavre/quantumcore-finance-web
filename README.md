@@ -1,4 +1,5 @@
-# Welcome to your Lovable project
+# ou
+nano index.html# Welcome to your Lovable project
 
 ## Project info
 
