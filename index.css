@@ -1,0 +1,150 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 30% 5%;
+    --foreground: 220 10% 95%;
+
+    --card: 220 25% 8%;
+    --card-foreground: 220 10% 90%;
+
+    --popover: 220 25% 8%;
+    --popover-foreground: 220 10% 90%;
+
+    --primary: 258 90% 66%;
+    --primary-foreground: 220 10% 5%;
+
+    --secondary: 193 100% 50%;
+    --secondary-foreground: 220 10% 5%;
+
+    --muted: 220 20% 12%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 290 100% 70%;
+    --accent-foreground: 220 10% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 15%;
+    --input: 220 20% 15%;
+    --ring: 258 90% 66%;
+
+    --radius: 0.75rem;
+
+    --quantum-blue: 258 90% 66%;
+    --quantum-cyan: 193 100% 50%;
+    --quantum-purple: 290 100% 70%;
+    --quantum-dark: 220 30% 5%;
+    --quantum-card: 220 25% 8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background: radial-gradient(circle at 20% 80%, hsl(120 50% 50% / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, hsl(140 60% 40% / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, hsl(160 40% 60% / 0.05) 0%, transparent 50%),
+                hsl(var(--background));
+  }
+
+  .font-quantum {
+    font-family: 'Orbitron', monospace;
+  }
+
+  .font-sans {
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Ensure content scrolls under the navbar */
+  main {
+    position: relative;
+    z-index: 10;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(120, 80%, 60%), hsl(140, 70%, 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .quantum-glow {
+    box-shadow: 0 0 20px hsl(120 80% 60% / 0.3),
+                0 0 40px hsl(140 70% 50% / 0.2),
+                0 0 60px hsl(160 60% 40% / 0.1);
+  }
+
+  .glass-effect {
+    background: rgba(34, 197, 94, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(34, 197, 94, 0.1);
+  }
+
+  .floating-animation {
+    animation: floating 6s ease-in-out infinite;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 20px hsl(120 80% 60% / 0.3); }
+  100% { box-shadow: 0 0 40px hsl(120 80% 60% / 0.6); }
+}
+
+@keyframes particle-move {
+  0% { transform: translateY(100vh) translateX(-50px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: hsl(120, 80%, 60%);
+  border-radius: 50%;
+  animation: particle-move 15s linear infinite;
+}
+
+.particle:nth-child(2) { left: 20%; animation-delay: -2s; animation-duration: 12s; }
+.particle:nth-child(3) { left: 40%; animation-delay: -4s; animation-duration: 18s; }
+.particle:nth-child(4) { left: 60%; animation-delay: -6s; animation-duration: 16s; }
+.particle:nth-child(5) { left: 80%; animation-delay: -8s; animation-duration: 20s; }
