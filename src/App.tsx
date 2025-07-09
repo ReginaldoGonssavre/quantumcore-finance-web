@@ -7,14 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import React, { useEffect } from 'react';
-import { PRIMARY_COLOR_HSL, SECONDARY_COLOR_HSL } from './config/branding';
 
 const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
-    document.documentElement.style.setProperty('--primary', PRIMARY_COLOR_HSL);
-    document.documentElement.style.setProperty('--secondary', SECONDARY_COLOR_HSL);
+    // Set CSS custom properties for theming
+    document.documentElement.style.setProperty('--primary', '258 90% 66%');
+    document.documentElement.style.setProperty('--secondary', '193 100% 50%');
   }, []);
 
   return (
@@ -25,7 +25,6 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
