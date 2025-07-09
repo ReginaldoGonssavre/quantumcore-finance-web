@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Shield, 
   Cpu, 
@@ -10,10 +10,22 @@ import {
   DollarSign, 
   Network,
   Lock,
-  BarChart3
+  BarChart3,
+  Check
 } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const ServicesSection = () => {
+  const [selectedService, setSelectedService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const services = [
     {
       icon: <Network className="w-8 h-8" />,
@@ -73,6 +85,11 @@ const ServicesSection = () => {
     }
   ];
 
+  const handleServiceClick = (service: any) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
   return (
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -88,34 +105,61 @@ const ServicesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div
-              key={service.title}
-              className="scroll-reveal group"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="glass-effect rounded-xl p-6 h-full hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-l-transparent hover:border-l-primary">
-                <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${service.color} mb-4 text-white group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
-                </div>
-                
-                <h3 className="font-quantum text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
-                  {service.title}
-                </h3>
-                
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {service.description}
-                </p>
-                
-                <div className="space-y-2">
-                  {service.benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-center text-sm">
-                      <div className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mr-2"></div>
-                      <span className="text-muted-foreground">{benefit}</span>
+            <Dialog key={service.title} open={isModalOpen && selectedService?.title === service.title} onOpenChange={setIsModalOpen}>
+              <DialogTrigger asChild>
+                <div
+                  className="scroll-reveal group cursor-pointer"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => handleServiceClick(service)}
+                >
+                  <div className="glass-effect rounded-xl p-6 h-full hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-l-transparent hover:border-l-primary">
+                    <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${service.color} mb-4 text-white group-hover:scale-110 transition-transform duration-300`}>
+                      {service.icon}
                     </div>
-                  ))}
+                    
+                    <h3 className="font-quantum text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {service.description}
+                    </p>
+                    
+                    <div className="space-y-2">
+                      {service.benefits.map((benefit, idx) => (
+                        <div key={idx} className="flex items-center text-sm">
+                          <div className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mr-2"></div>
+                          <span className="text-muted-foreground">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </DialogTrigger>
+              {selectedService && (
+                <DialogContent className="sm:max-w-[600px]">
+                  <DialogHeader>
+                    <DialogTitle className="font-quantum text-2xl text-gradient flex items-center gap-2">
+                      {selectedService.icon} {selectedService.title}
+                    </DialogTitle>
+                    <DialogDescription className="text-muted-foreground leading-relaxed mt-2">
+                      {selectedService.description}
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="py-4">
+                    <h4 className="font-quantum text-lg font-bold mb-3 text-foreground">Benefícios Chave:</h4>
+                    <ul className="space-y-2">
+                      {selectedService.benefits.map((benefit: string, idx: number) => (
+                        <li key={idx} className="flex items-center text-sm text-muted-foreground">
+                          <Check className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </DialogContent>
+              )}
+            </Dialog>
           ))}
         </div>
 

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Navbar from '@/components/Navbar';
+import TopNavbar from '@/components/TopNavbar'; // Import TopNavbar
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import TechnologySection from '@/components/TechnologySection';
@@ -15,6 +16,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <TopNavbar /> {/* Render TopNavbar */}
       <Navbar />
       <main>
         <HeroSection />

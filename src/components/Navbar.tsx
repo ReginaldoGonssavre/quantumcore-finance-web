@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { BRAND_NAME } from '@/config/branding';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +35,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      <nav className={`fixed top-8 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-green-900/20 backdrop-blur-xl border-b border-green-500/20 shadow-lg shadow-green-500/10' 
           : 'bg-green-900/10 backdrop-blur-md border-b border-green-500/10'
@@ -44,10 +45,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <div className="font-quantum text-2xl font-bold text-gradient">
-                QuantumCore
-              </div>
-              <div className="text-xs text-green-300/80 font-medium">
-                by AigroNovaTech
+                {BRAND_NAME}
               </div>
             </div>
 

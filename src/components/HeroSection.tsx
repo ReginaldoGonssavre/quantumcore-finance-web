@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { BRAND_NAME, HERO_HEADLINE, HERO_SUBHEADLINE, HERO_BUTTON_SERVICES, HERO_BUTTON_CONTACT } from '@/config/branding';
 
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -51,24 +52,19 @@ const HeroSection = () => {
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="scroll-reveal">
           <h1 className="font-quantum text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-gradient">QuantumCore</span>
-            <br />
-            <span className="text-2xl sm:text-3xl lg:text-4xl font-medium text-muted-foreground">
-              by AigroNovaTech
-            </span>
+            <span className="text-gradient">{BRAND_NAME}</span>
           </h1>
         </div>
 
         <div className="scroll-reveal" style={{ animationDelay: '0.2s' }}>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-foreground">
-            Precisão Quântica para o Mercado Financeiro
+            {HERO_HEADLINE}
           </h2>
         </div>
 
         <div className="scroll-reveal" style={{ animationDelay: '0.4s' }}>
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            Revolucionando o setor financeiro com o poder da computação quântica e inteligência artificial. 
-            Descubra o futuro das finanças digitais com nossa plataforma inovadora.
+            {HERO_SUBHEADLINE}
           </p>
         </div>
 
@@ -77,13 +73,13 @@ const HeroSection = () => {
             onClick={scrollToServices}
             className="bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 quantum-glow"
           >
-            Conheça Nossos Serviços
+            {HERO_BUTTON_SERVICES}
           </button>
           <button
             onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="glass-effect text-foreground px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all duration-300 border border-primary/30"
           >
-            Fale Conosco
+            {HERO_BUTTON_CONTACT}
           </button>
         </div>
 
