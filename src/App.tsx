@@ -12,9 +12,10 @@ const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
-    // Set CSS custom properties for theming
-    document.documentElement.style.setProperty('--primary', '258 90% 66%');
-    document.documentElement.style.setProperty('--secondary', '193 100% 50%');
+    // Set QuantumCore Finance custom properties
+    document.documentElement.style.setProperty('--primary', '120 100% 50%');
+    document.documentElement.style.setProperty('--secondary', '180 100% 60%');
+    document.documentElement.style.setProperty('--background', '220 45% 8%');
   }, []);
 
   return (

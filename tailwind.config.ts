@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 
@@ -62,7 +63,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// QuantumCore Custom Colors
+				'quantum-galaxy': 'hsl(var(--quantum-galaxy-dark))',
+				'quantum-phosphor': 'hsl(var(--quantum-phosphor-green))',
+				'quantum-cyan': 'hsl(var(--quantum-electric-cyan))',
+				'quantum-purple': 'hsl(var(--quantum-electric-purple))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -85,11 +91,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'floating': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-20px)' }
+				},
+				'pulse-quantum': {
+					'0%': { boxShadow: '0 0 20px hsl(120 100% 50% / 0.3)' },
+					'100%': { boxShadow: '0 0 40px hsl(120 100% 50% / 0.6)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'floating': 'floating 6s ease-in-out infinite',
+				'pulse-quantum': 'pulse-quantum 2s ease-in-out infinite alternate'
 			}
 		}
 	},

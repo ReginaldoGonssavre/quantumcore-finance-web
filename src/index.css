@@ -6,47 +6,51 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* QuantumCore Finance - Nova Geração Design System */
 @layer base {
   :root {
-    --background: 220 30% 5%;
-    --foreground: 220 10% 95%;
+    /* Galaxy Dark Blue Background */
+    --background: 220 45% 8%;
+    --foreground: 210 20% 95%;
 
-    --card: 220 25% 8%;
-    --card-foreground: 220 10% 90%;
+    /* Card and Surface Colors */
+    --card: 220 40% 12%;
+    --card-foreground: 210 15% 90%;
 
-    --popover: 220 25% 8%;
-    --popover-foreground: 220 10% 90%;
+    --popover: 220 40% 12%;
+    --popover-foreground: 210 15% 90%;
 
-    --primary: 258 90% 66%;
-    --primary-foreground: 220 10% 5%;
+    /* Phosphorescent Green Primary */
+    --primary: 120 100% 50%;
+    --primary-foreground: 220 45% 8%;
 
-    --secondary: 193 100% 50%;
-    --secondary-foreground: 220 10% 5%;
+    /* Cyan Secondary */
+    --secondary: 180 100% 60%;
+    --secondary-foreground: 220 45% 8%;
 
-    --muted: 220 20% 12%;
-    --muted-foreground: 220 10% 60%;
+    /* Muted Colors */
+    --muted: 220 35% 15%;
+    --muted-foreground: 210 10% 70%;
 
-    --accent: 290 100% 70%;
-    --accent-foreground: 220 10% 5%;
+    /* Accent - Electric Purple */
+    --accent: 280 100% 70%;
+    --accent-foreground: 220 45% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 20% 15%;
-    --input: 220 20% 15%;
-    --ring: 258 90% 66%;
+    --border: 220 30% 18%;
+    --input: 220 30% 18%;
+    --ring: 120 100% 50%;
 
     --radius: 0.75rem;
 
-    --quantum-blue: 258 90% 66%;
-    --quantum-cyan: 193 100% 50%;
-    --quantum-purple: 290 100% 70%;
-    --quantum-dark: 220 30% 5%;
-    --quantum-card: 220 25% 8%;
+    /* Custom QuantumCore Colors */
+    --quantum-galaxy-dark: 220 45% 8%;
+    --quantum-phosphor-green: 120 100% 50%;
+    --quantum-phosphor-green-transparent: 120 100% 50% / 0.15;
+    --quantum-electric-cyan: 180 100% 60%;
+    --quantum-electric-purple: 280 100% 70%;
   }
 }
 
@@ -57,10 +61,12 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans;
-    background: radial-gradient(circle at 20% 80%, hsl(120 50% 50% / 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, hsl(140 60% 40% / 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, hsl(160 40% 60% / 0.05) 0%, transparent 50%),
-                hsl(var(--background));
+    background: 
+      radial-gradient(circle at 20% 80%, hsl(120 100% 50% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(180 100% 60% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, hsl(280 100% 70% / 0.03) 0%, transparent 50%),
+      hsl(var(--quantum-galaxy-dark));
+    min-height: 100vh;
   }
 
   .font-quantum {
@@ -70,40 +76,42 @@ All colors MUST be HSL.
   .font-sans {
     font-family: 'Inter', sans-serif;
   }
-
-  /* Ensure content scrolls under the navbar */
-  main {
-    position: relative;
-    z-index: 10;
-  }
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, hsl(120, 80%, 60%), hsl(140, 70%, 50%));
+  .text-gradient-quantum {
+    background: linear-gradient(135deg, hsl(120, 100%, 50%), hsl(180, 100%, 60%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .quantum-glow {
-    box-shadow: 0 0 20px hsl(120 80% 60% / 0.3),
-                0 0 40px hsl(140 70% 50% / 0.2),
-                0 0 60px hsl(160 60% 40% / 0.1);
+    box-shadow: 
+      0 0 20px hsl(120 100% 50% / 0.3),
+      0 0 40px hsl(120 100% 50% / 0.2),
+      0 0 60px hsl(120 100% 50% / 0.1);
   }
 
-  .glass-effect {
-    background: rgba(34, 197, 94, 0.05);
+  .quantum-glow-cyan {
+    box-shadow: 
+      0 0 20px hsl(180 100% 60% / 0.3),
+      0 0 40px hsl(180 100% 60% / 0.2),
+      0 0 60px hsl(180 100% 60% / 0.1);
+  }
+
+  .glass-phosphor {
+    background: hsl(var(--quantum-phosphor-green-transparent));
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(34, 197, 94, 0.1);
+    border: 1px solid hsl(120 100% 50% / 0.2);
   }
 
   .floating-animation {
     animation: floating 6s ease-in-out infinite;
   }
 
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite alternate;
+  .pulse-quantum {
+    animation: pulse-quantum 2s ease-in-out infinite alternate;
   }
 
   .scroll-reveal {
@@ -116,6 +124,21 @@ All colors MUST be HSL.
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Navbar Phosphorescent Effect */
+  .navbar-phosphor {
+    background: linear-gradient(
+      135deg,
+      hsl(120 100% 50% / 0.15) 0%,
+      hsl(120 100% 50% / 0.1) 50%,
+      hsl(120 100% 50% / 0.05) 100%
+    );
+    backdrop-filter: blur(25px);
+    border: 1px solid hsl(120 100% 50% / 0.2);
+    box-shadow: 
+      0 0 20px hsl(120 100% 50% / 0.1),
+      inset 0 0 20px hsl(120 100% 50% / 0.05);
+  }
 }
 
 @keyframes floating {
@@ -123,28 +146,28 @@ All colors MUST be HSL.
   50% { transform: translateY(-20px); }
 }
 
-@keyframes pulse-glow {
-  0% { box-shadow: 0 0 20px hsl(120 80% 60% / 0.3); }
-  100% { box-shadow: 0 0 40px hsl(120 80% 60% / 0.6); }
+@keyframes pulse-quantum {
+  0% { box-shadow: 0 0 20px hsl(120 100% 50% / 0.3); }
+  100% { box-shadow: 0 0 40px hsl(120 100% 50% / 0.6); }
 }
 
-@keyframes particle-move {
+@keyframes particle-quantum {
   0% { transform: translateY(100vh) translateX(-50px); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
   100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
 }
 
-.particle {
+.particle-quantum {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: hsl(120, 80%, 60%);
+  background: hsl(120, 100%, 50%);
   border-radius: 50%;
-  animation: particle-move 15s linear infinite;
+  animation: particle-quantum 15s linear infinite;
 }
 
-.particle:nth-child(2) { left: 20%; animation-delay: -2s; animation-duration: 12s; }
-.particle:nth-child(3) { left: 40%; animation-delay: -4s; animation-duration: 18s; }
-.particle:nth-child(4) { left: 60%; animation-delay: -6s; animation-duration: 16s; }
-.particle:nth-child(5) { left: 80%; animation-delay: -8s; animation-duration: 20s; }
+.particle-quantum:nth-child(2) { left: 20%; animation-delay: -2s; animation-duration: 12s; }
+.particle-quantum:nth-child(3) { left: 40%; animation-delay: -4s; animation-duration: 18s; }
+.particle-quantum:nth-child(4) { left: 60%; animation-delay: -6s; animation-duration: 16s; }
+.particle-quantum:nth-child(5) { left: 80%; animation-delay: -8s; animation-duration: 20s; }
