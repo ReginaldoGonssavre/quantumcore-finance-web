@@ -1,190 +1,66 @@
 
-import React, { useState } from 'react';
-import { 
-  Shield, 
-  Cpu, 
-  CreditCard, 
-  TrendingUp, 
-  Brain, 
-  Layers, 
-  DollarSign, 
-  Network,
-  Lock,
-  BarChart3,
-  Check
-} from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import React from 'react';
+import { TrendingUp, PieChart, Shield, Vault, Zap, ArrowRight } from 'lucide-react';
+import { MICROSERVICES } from '@/config/branding';
 
 const ServicesSection = () => {
-  const [selectedService, setSelectedService] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const services = [
-    {
-      icon: <Network className="w-8 h-8" />,
-      title: "API Gateway",
-      description: "Ponto de entrada unificado para todos os serviços com alta disponibilidade e segurança.",
-      benefits: ["Controle Centralizado", "Rate Limiting", "Monitoramento"],
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Auth Service",
-      description: "Gerenciamento de usuários, registro e autenticação avançada com JWT e MFA.",
-      benefits: ["Segurança Máxima", "Autenticação Biométrica", "Gestão de Permissões"],
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      icon: <Layers className="w-8 h-8" />,
-      title: "Core Banking Service",
-      description: "Funcionalidades essenciais de contas, saldos e transferências em tempo real.",
-      benefits: ["Transações Instantâneas", "Saldos em Tempo Real", "Histórico Completo"],
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      icon: <TrendingUp className="w-8 h-8" />,
-      title: "Investment Service",
-      description: "Otimização de portfólio quântica, simulação de risco e criptografia pós-quântica.",
-      benefits: ["Algoritmos Quânticos", "Análise Preditiva", "Gestão de Risco"],
-      color: "from-orange-500 to-red-500"
-    },
-    {
-      icon: <Brain className="w-8 h-8" />,
-      title: "AI Financial Advisor",
-      description: "Aconselhamento financeiro personalizado com inteligência artificial avançada.",
-      benefits: ["Conselhos Personalizados", "Análise Comportamental", "Planejamento Futuro"],
-      color: "from-indigo-500 to-purple-500"
-    },
-    {
-      icon: <CreditCard className="w-8 h-8" />,
-      title: "Card Management",
-      description: "Emissão e gestão completa de cartões físicos e virtuais com segurança quântica.",
-      benefits: ["Cartões Virtuais", "Controle Total", "Segurança Avançada"],
-      color: "from-teal-500 to-cyan-500"
-    },
-    {
-      icon: <DollarSign className="w-8 h-8" />,
-      title: "Loan Credit Service",
-      description: "Gerenciamento inteligente de empréstimos P2P e cálculo de score com IA.",
-      benefits: ["Score Inteligente", "Empréstimos P2P", "Análise de Crédito"],
-      color: "from-yellow-500 to-orange-500"
-    },
-    {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: "Open Finance",
-      description: "Integração completa com Open Banking e Open Insurance (PSD2, Pix, SPB).",
-      benefits: ["Integração Pix", "Open Banking", "Compliance PSD2"],
-      color: "from-rose-500 to-pink-500"
-    }
-  ];
-
-  const handleServiceClick = (service: any) => {
-    setSelectedService(service);
-    setIsModalOpen(true);
+  const getServiceIcon = (iconName: string) => {
+    const icons = {
+      TrendingUp,
+      PieChart,
+      Shield,
+      Vault,
+      Zap
+    };
+    return icons[iconName as keyof typeof icons] || TrendingUp;
   };
 
   return (
     <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 scroll-reveal">
-          <h2 className="font-quantum text-4xl sm:text-5xl font-bold mb-6 text-gradient">
-            Nossos Serviços
+          <h2 className="font-quantum text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient-quantum">
+            Microsserviços Quânticos
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Módulos avançados da plataforma QuantumCore, cada um projetado para revolucionar 
-            diferentes aspectos do mercado financeiro com tecnologia quântica.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Descubra nossa suíte completa de soluções financeiras potencializadas por computação quântica e inteligência artificial
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <Dialog key={service.title} open={isModalOpen && selectedService?.title === service.title} onOpenChange={setIsModalOpen}>
-              <DialogTrigger asChild>
-                <div
-                  className="scroll-reveal group cursor-pointer"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => handleServiceClick(service)}
-                >
-                  <div className="glass-effect rounded-xl p-6 h-full hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-l-transparent hover:border-l-primary">
-                    <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${service.color} mb-4 text-white group-hover:scale-110 transition-transform duration-300`}>
-                      {service.icon}
-                    </div>
-                    
-                    <h3 className="font-quantum text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {service.description}
-                    </p>
-                    
-                    <div className="space-y-2">
-                      {service.benefits.map((benefit, idx) => (
-                        <div key={idx} className="flex items-center text-sm">
-                          <div className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mr-2"></div>
-                          <span className="text-muted-foreground">{benefit}</span>
-                        </div>
-                      ))}
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {MICROSERVICES.map((service, index) => {
+            const IconComponent = getServiceIcon(service.icon);
+            return (
+              <div
+                key={service.id}
+                className="scroll-reveal glass-phosphor rounded-xl p-8 hover:quantum-glow transition-all duration-300 group cursor-pointer"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="mb-6">
+                  <div className="w-16 h-16 glass-phosphor rounded-lg flex items-center justify-center mb-4 group-hover:quantum-glow-cyan transition-all duration-300">
+                    <IconComponent size={32} className="text-primary group-hover:text-secondary transition-colors duration-300" />
                   </div>
+                  <h3 className="font-quantum text-xl font-bold text-foreground mb-3">
+                    {service.name}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
-              </DialogTrigger>
-              {selectedService && (
-                <DialogContent className="sm:max-w-[600px]">
-                  <DialogHeader>
-                    <DialogTitle className="font-quantum text-2xl text-gradient flex items-center gap-2">
-                      {selectedService.icon} {selectedService.title}
-                    </DialogTitle>
-                    <DialogDescription className="text-muted-foreground leading-relaxed mt-2">
-                      {selectedService.description}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="py-4">
-                    <h4 className="font-quantum text-lg font-bold mb-3 text-foreground">Benefícios Chave:</h4>
-                    <ul className="space-y-2">
-                      {selectedService.benefits.map((benefit: string, idx: number) => (
-                        <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                          <Check className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </DialogContent>
-              )}
-            </Dialog>
-          ))}
+                
+                <div className="flex items-center text-primary group-hover:text-secondary transition-colors duration-300">
+                  <span className="text-sm font-medium mr-2">Saiba mais</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Stats Section */}
-        <div className="mt-20 scroll-reveal">
-          <div className="glass-effect rounded-2xl p-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-3xl font-bold text-gradient font-quantum">99.9%</div>
-                <div className="text-muted-foreground">Uptime</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gradient font-quantum">&lt;10ms</div>
-                <div className="text-muted-foreground">Latência</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gradient font-quantum">256-bit</div>
-                <div className="text-muted-foreground">Criptografia</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-gradient font-quantum">24/7</div>
-                <div className="text-muted-foreground">Suporte</div>
-              </div>
-            </div>
-          </div>
+        <div className="text-center mt-12 scroll-reveal">
+          <button className="bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-4 rounded-full font-semibold hover:quantum-glow hover:scale-105 transition-all duration-300">
+            Explorar Todos os Serviços
+          </button>
         </div>
       </div>
     </section>
