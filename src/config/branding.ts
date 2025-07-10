@@ -2,6 +2,12 @@
 export const BRAND_NAME = "QuantumCore";
 export const BRAND_SUBTITLE = "by AigroNovaTech";
 
+// Hero Section Content
+export const HERO_HEADLINE = "Precisão Quântica para o Mercado Financeiro";
+export const HERO_SUBHEADLINE = "Revolucionando o setor financeiro com o poder da computação quântica e inteligência artificial. Descubra o futuro das finanças digitais com nossa plataforma inovadora.";
+export const HERO_BUTTON_SERVICES = "Conheça Nossos Serviços";
+export const HERO_BUTTON_CONTACT = "Fale Conosco";
+
 export const MICROSERVICES = [
   {
     id: "quantum-trading",
